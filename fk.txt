@@ -10,3 +10,5 @@ REFERENCES fornecedor (id_fornecedor)
 INSERT INTO 
 produto
 VALUES (null,"escova","50","12.90","1")
+
+
