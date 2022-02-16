@@ -1,0 +1,12 @@
+ALTER table produto
+ADD FOREIGN KEY (id_fornecedor)
+REFERENCES fornecedor (id_fornecedor)
+
+
+
+
+########INSERT############
+
+INSERT INTO 
+produto
+VALUES (null,"escova","50","12.90","1")
