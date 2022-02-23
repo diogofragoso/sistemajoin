@@ -50,20 +50,11 @@
   <tbody>
     <tr>
 
+    </tr>
+
+<?php include 'conexao.php'; ?>
+
 <?php
-$servername = "localhost";
-$usernameBD = "root";
-$password = "";
-$dbname = "sistema";
-
-// Create connection
-$conn = new mysqli($servername, $usernameBD, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
-
 $sql = "SELECT p.id_produto, p.nome_produto, p.qtd_produto, p.preco_produto,f.nome_fornecedor FROM produto p INNER JOIN  fornecedor f on p.id_fornecedor = f.id_fornecedor";
 $result = $conn->query($sql);
 
@@ -71,7 +62,9 @@ $result = $conn->query($sql);
   // output data of each row
   while($row = $result->fetch_assoc()) { ?>
 
-            <?php $id = $row ["id_produto"]; ?>
+           <?php $id_prod = $row ["id_produto"]; ?>
+           <?php $nomep = $row ["nome_produto"]; ?>
+
             <td> <?php echo $row ["id_produto"]; ?> </td>
             <td> <?php echo $row ["nome_produto"]; ?> </td>
             <td> <?php echo $row ["qtd_produto"]; ?> </td>
@@ -79,8 +72,9 @@ $result = $conn->query($sql);
             <td> <?php echo $row ["nome_fornecedor"]; ?> </td>
             <td> 
                       
-                      <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-remover" onclick="setRemover(<?php echo $id ?>)">Remover</button>
-                      <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modal-atualizar" onclick="setAtualizar()">Atualizar</button>
+                      <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-remover" onclick="setRemover(<?php echo $id_prod ?>)">Remover</button>
+                      <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modal-atualizar" 
+                      onclick="setAtualizar( <?php echo $row ['id_produto']; ?>,'<?php echo $row ['nome_produto']; ?>' , <?php echo $row ['qtd_produto']; ?>, <?php echo $row ['preco_produto']; ?> , '<?php echo $row ['nome_fornecedor']; ?>')"> Atualizar</button>
                       
             </td>
           
@@ -151,7 +145,7 @@ $result = $conn->query($sql);
 
                           </div>
                           <div class="modal-footer">
-                          <form method="post" action="atualizar_prod.php">
+                          <form method="post" action="atualiza_prod.php">
                       
                             <input  id="remover"type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"  name="id-prod"  style="display: none;">      
                             
@@ -160,23 +154,26 @@ $result = $conn->query($sql);
                                 <div class="row">
                                       <form class=" g-3 needs-validation mt-5 " method="post" action="cad_prod.php">
                                         <div class="col-10">
+                                        <input id="atualiza-id" type="text" class="form-control" id="validationCustom01" placeholder="Detergente" value="" name="id" style="display: none;" required>
+
+
                                           <label for="validationCustom01" class="form-label">Produto</label>
-                                          <input id="nome" type="text" class="form-control" id="validationCustom01" placeholder="Sabão" value="" name="nome" required>
+                                          <input id="atualiza-nome" type="text" class="form-control" id="validationCustom01" placeholder="Detergente" value="" name="nome" required>
                                           
                                         </div>
                                         <div class="col-10">
                                           <label for="validationCustom02" class="form-label">Quantidade</label>
-                                          <input id="qtd" type="text" class="form-control" id="validationCustom02" placeholder="50" name="quantidade" required>
+                                          <input id="atualiza-qtd" type="text" class="form-control" id="validationCustom02" placeholder="50" name="quantidade" required>
                                           
                                         </div>
                                       
                                         <div class="col-10">
                                           <label for="validationCustom03" class="form-label">Preço</label>
-                                          <input id="preco" type="text" class="form-control" id="validationCustom03"  placeholder="9.90" name="preco" required>                                      
+                                          <input id="atualiza-preco" type="text" class="form-control" id="validationCustom03"  placeholder="9.90" name="preco" required>                                      
                                         </div>
                                         <div class="col-10 mb-5">
                                           <label for="validationCustom03" class="form-label">Fornecedor</label>
-                                          <input id="fornecedor" type="text" class="form-control" id="validationCustom03"  placeholder="Fornecedor" name="fornecedor" required>                                      
+                                          <input id="atualiza-nome-fornecedor" type="text" class="form-control" id="validationCustom03"  placeholder="Fornecedor" name="fornecedor" required>                                      
                                         </div>
 
                                         <!-- <div class="col-md-10">
@@ -198,39 +195,6 @@ $result = $conn->query($sql);
 <!-- FIM MODAL atualizar-->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div> <!-- FIM DO CONTAINER --> 
 
     
@@ -241,8 +205,17 @@ $result = $conn->query($sql);
                      
                     }
 
-                    function setAtualizar(id,nome,qtd, preco, fornecedor){
+                    function setAtualizar(id,nome,qtd,preco,nome_fornecedor){
+                      
+                          document.getElementById('atualiza-id').value = id;
+                         document.getElementById('atualiza-nome').value = nome;
+                         document.getElementById('atualiza-qtd').value = qtd;
+                         document.getElementById('atualiza-preco').value = preco;
+                         document.getElementById('atualiza-nome-fornecedor').value = nome_fornecedor;
 
+
+
+           
 
                     }
 
