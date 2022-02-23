@@ -15,8 +15,8 @@
           <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="fornecedor.php">Fornecedor</a></li>
             <li><a class="dropdown-item" href="produto.php">Produto</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="consulta.php">Consultar</a></li>  
+            <li><hr class="dropdown-divider"></li>           
+            <li><a class="dropdown-item" href="consulta2.php">Consultar </a></li>  
             <li><a class="dropdown-item" href="#"></a></li>
           </ul>
         </li>
