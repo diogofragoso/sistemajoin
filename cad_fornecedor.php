@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES (null, '$nomef', '$cidadef')";
             // use exec() because no results are returned
             $conn->exec($sql);
-            echo "<script>window.confirm('Cadastro realizado com sucesso') </script>";
+            echo "<script> alert('Cadastro realizado com sucesso </script>";
            
           } catch(PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
 
 
-
+  echo "<script> alert('Cadastro realizado com sucesso </script>";
 ?>
 
 

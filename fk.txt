@@ -12,3 +12,7 @@ produto
 VALUES (null,"escova","50","12.90","1")
 
 
+##########Valida user################
+SELECT * FROM `usuario` 
+
+WHERE login_user="diogofragoso" and senha_user="1234";
