@@ -29,12 +29,23 @@ session_start();
     include 'conexao.php';
     ?>
     <?php
-        echo "<table style='border: solid 1px black;'>";
-        echo "<tr><th>Id</th><th>Firstname</th><th>Lastname</th></tr>";
+        // echo "<table style='border: solid 1px black;'>";
+        "<tr><th>id_user</th><th>login_user</th><th>nome_user</th><th>nivel_user</th><th>senha_user</th></tr>";
         
         class TableRows extends RecursiveIteratorIterator {
           function __construct($it) {
             parent::__construct($it, self::LEAVES_ONLY);
+          }
+          function current() {
+            return "<td style='width:450px;border:1px solid black;'>" . parent::current(). "</td>";
+          }
+        
+          function beginChildren() {
+            echo "<tr>";
+          }
+        
+          function endChildren() {
+            echo "</tr>" . "\n";
           }
         
         }
@@ -53,24 +64,36 @@ session_start();
             try {
                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $usernameBD, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stmt = $conn->prepare("SELECT * FROM usuario WHERE 'login_user'=$login and 'senha_user'=$senha");               
+                $stmt = $conn->prepare("SELECT * FROM usuario WHERE login_user='$login' and senha_user='$senha'");               
                     
                 $stmt->execute();
-              
-                // set the resulting array to associative
+                $count=0;
+                // Lista o resultado
                 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
-                  echo $v;
+                  foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
+                    //echo $v;
+                    $count++; 
+                  }
+                  
                 }
-              }
-              catch(PDOException $e) {
-                echo "Error: " . $e->getMessage();
-              }
-              $conn = null;
-              echo "</table>";
-            }
-        }
+                catch(PDOException $e) {
+                  echo "Error: " . $e->getMessage();
+                }
+                $conn = null;
+                echo "</table>";
+                //Caso nenhum resultado seja listado o login e senha não conferem
+                if($count > 0){
+                  echo "Login realizado com sucesso";
+                  $_SESSION["user"] = $login;
 
+               } else{ 
+                 
+                      header("Location: index.php");
+                     }
+
+
+              }
+    }
     ?>
 
 
