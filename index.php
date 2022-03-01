@@ -31,7 +31,6 @@ session_start();
           <span class="navbar-toggler-icon"></span>
         </button>
       
-
         
     </nav>
 

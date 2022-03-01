@@ -22,6 +22,7 @@
         </li>
        
       </ul>
+      <a class="navbar-brand text-white d-flex" href="sair.php" >Sair</a>
      
-  </div>
+  </div> <!--fim do container-->
 </nav>  

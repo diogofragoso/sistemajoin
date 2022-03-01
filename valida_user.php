@@ -22,34 +22,19 @@ session_start();
 
 <body>
 
-
-
-
     <?php
     include 'conexao.php';
     ?>
     <?php
         // echo "<table style='border: solid 1px black;'>";
-        "<tr><th>id_user</th><th>login_user</th><th>nome_user</th><th>nivel_user</th><th>senha_user</th></tr>";
+        // "<tr><th>id_user</th><th>login_user</th><th>nome_user</th><th>nivel_user</th><th>senha_user</th></tr>";
         
         class TableRows extends RecursiveIteratorIterator {
           function __construct($it) {
             parent::__construct($it, self::LEAVES_ONLY);
-          }
-          function current() {
-            return "<td style='width:450px;border:1px solid black;'>" . parent::current(). "</td>";
-          }
-        
-          function beginChildren() {
-            echo "<tr>";
-          }
-        
-          function endChildren() {
-            echo "</tr>" . "\n";
-          }
+          }          
         
         }
-
 
 
 
@@ -83,12 +68,16 @@ session_start();
                 echo "</table>";
                 //Caso nenhum resultado seja listado o login e senha não conferem
                 if($count > 0){
-                  echo "Login realizado com sucesso";
+                  // echo "Login realizado com sucesso";
+                  $_SESSION["logado"] = true;
                   $_SESSION["user"] = $login;
+                  header("Location: navegacao.php");
 
                } else{ 
-                 
+                      $_SESSION["logado"] = false;
+                      echo $_SESSION["logado"];
                       header("Location: index.php");
+                      
                      }
 
 
