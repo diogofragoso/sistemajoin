@@ -74,9 +74,9 @@ session_start();
                   header("Location: navegacao.php");
 
                } else{ 
-                      $_SESSION["logado"] = false;
-                      echo $_SESSION["logado"];
-                      header("Location: index.php");
+                      $_SESSION["logado"] = false;                      
+                      echo "<script>alert( 'Usuário ou senha incorretos' ); location = 'index.php'</script>";
+                     // header("Location: index.php");
                       
                      }
 

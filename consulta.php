@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+if(!isset($_SESSION["logado"])){
+    // Usuário não logado! Redireciona para a página de login
+    header("Location: index.php");
+    exit;
+    }
+?>
+
+
+
 
 <!doctype html>
     <html lang="pt-br">

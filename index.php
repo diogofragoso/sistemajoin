@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-
-
 ?>
 
 <!doctype html>
@@ -22,49 +20,50 @@ session_start();
 <body>
 
 
-  <div class="container-fluid">
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand text-white" href="index.php">Home</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        
-    </nav>
+  
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-lg  navbar-light bg-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand text-white" href="index.php">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
 
-
-
-  </div> <!-- Fim do container NAV-->
+        </nav>
+      </div>
+      <!--fim da coluna-->
+    </div>
+    <!--fim da linha 1 -->
+  <!-- Fim do container NAV-->
 
   <div class="container">
 
-  
-      <div class="col "></div>
-      <form class="row g-3 precisa-validar mt-5" novalidate action="valida_user.php" method="post">
+
+    <div class="col "></div>
+    <form class="row g-3 precisa-validar mt-5" novalidate action="valida_user.php" method="post">
 
       <div class="row mt-2">
         <div class="col-md-4 mx-auto">
           <label for="validationCustom01" class="form-label">Login</label>
           <input type="text" class="form-control" id="validationCustom01" placeholder="Burger" value="" name="login" required>
           <div class="valid-feedback">
-            Muito bom!
+            Campo preenchido!
           </div>
         </div>
       </div>
-          <div class="row mt-2">
+      <div class="row mt-2">
         <div class="col-md-4 mx-auto">
           <label for="validationCustom01" class="form-label">Senha</label>
           <input type="password" class="form-control" id="validationCustom01" value="" name="senha" required>
           <div class="valid-feedback">
-            Muito bom!
+            Campo preenchido!
           </div>
         </div>
-        </div>
+      </div>
 
-<!-- 
+      <!-- 
           <div class="row mt-2">
         <div class="col-md-4 mx-auto">
           <div class="form-check">
@@ -80,42 +79,41 @@ session_start();
         </div> -->
 
 
-        <div class="col-md-4 mx-auto">
-          <button class="btn btn-primary" type="submit">Entrar</button>
-        </div>
-      </form>
+      <div class="col-md-4 mx-auto">
+        <button class="btn btn-primary" type="submit">Entrar</button>
+      </div>
+    </form>
 
 
 
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-    </div>
+    <div class="col"></div>
+    <div class="col"></div>
+    <div class="col"></div>
+  </div>
 
 
   </div>
 
 
-<script>
-  
-(function () {
-  'use strict'
+  <script>
+    (function() {
+      'use strict'
 
-  var forms = document.querySelectorAll('.precisa-validar')
+      var forms = document.querySelectorAll('.precisa-validar')
 
-   Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
+      Array.prototype.slice.call(forms)
+        .forEach(function(form) {
+          form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
 
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
-</script>
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+  </script>
 
 
 
