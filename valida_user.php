@@ -57,6 +57,8 @@ session_start();
                 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
                   foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
                     //echo $v;
+                    $dados[] = $v;
+                    $_SESSION["nivel"] = $dados[3];
                     $count++; 
                   }
                   
@@ -71,6 +73,7 @@ session_start();
                   // echo "Login realizado com sucesso";
                   $_SESSION["logado"] = true;
                   $_SESSION["user"] = $login;
+                             
                   header("Location: navegacao.php");
 
                } else{ 
@@ -84,10 +87,6 @@ session_start();
               }
     }
     ?>
-
-
-
-
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

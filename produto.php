@@ -6,6 +6,16 @@ if(!isset($_SESSION["logado"])){
     header("Location: index.php");
     exit;
     }
+    
+    if($_SESSION["nivel"] < 2){
+      header("Location: navegacao.php");      
+      
+      }
+      
+    
+
+
+
 
 ?>
 

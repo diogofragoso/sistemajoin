@@ -7,6 +7,13 @@ if (!isset($_SESSION["logado"])) {
   header("Location: index.php");
   exit;
 }
+//echo $_SESSION["nivel"];
+if($_SESSION["nivel"] < 4){
+
+  echo "<script>document.getElementById('fornecedor').style.display = 'none'; </script>" ;
+
+}
+
 
 ?>
 
@@ -34,15 +41,6 @@ if (!isset($_SESSION["logado"])) {
 
     <?php include 'menu.php'; ?>
  
-
-
-
-
-
-
-
-
-
 
 
 
