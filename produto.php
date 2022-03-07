@@ -71,16 +71,20 @@ if(!isset($_SESSION["logado"])){
 
 <div class="col-6 align-self-center">
 <!-- Início do formulário -->
-<form class="row g-3 needs-validation mt-5 " method="post" action="cad_prod.php">
+<form class="row g-3 needs-validation mt-5 " method="post" enctype="multipart/form-data" action="cad_prod.php">
   <div class="col-md-10">
     <label for="validationCustom01" class="form-label">Produto</label>
-    <input type="text" class="form-control" id="validationCustom01" placeholder="Sabão" value="" name="nome" required>
-    
+    <input type="text" class="form-control" id="validationCustom01" placeholder="Sabão" value="" name="nome" required>    
   </div>
+
+  <div class="col-md-10">
+    <label for="validationCustom05" class="form-label">Escolha a imagem do produto</label>    
+    <input type="file"  class="form-control"  id="validationCustom05"  name="fileToUpload" require>   
+  </div>
+
   <div class="col-md-5">
     <label for="validationCustom02" class="form-label">Quantidade</label>
-    <input type="text" class="form-control" id="validationCustom02" placeholder="50" name="quantidade" required>
-    
+    <input type="text" class="form-control" id="validationCustom02" placeholder="50" name="quantidade" required>    
   </div>
  
   <div class="col-md-5">
@@ -137,7 +141,7 @@ $conn->close();
 
     
   <div class="col-12">
-    <button class="btn btn-primary" type="submit">Cadastrar</button>
+    <button class="btn btn-primary" type="submit" name="submit">Cadastrar</button>
   </div>
 </form>
 

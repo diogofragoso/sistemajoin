@@ -29,6 +29,12 @@ if (!isset($_SESSION["logado"])) {
   <title>Lista DB</title>
 
   <style>
+      
+
+      img{
+        width: 70px;
+        height: 70px;
+      }
 
   </style>
 </head>
@@ -53,6 +59,7 @@ if (!isset($_SESSION["logado"])) {
         <tr>
           <th scope="col">id</th>
           <th scope="col">Produto</th>
+          <th scope="col">Imagem</th>
           <th scope="col">Quantidade</th>
           <th scope="col">Preço</th>
           <th scope="col">Fornecedor</th>
@@ -69,7 +76,7 @@ if (!isset($_SESSION["logado"])) {
         <?php include 'conexao.php'; ?>
 
         <?php
-        $sql = "SELECT p.id_produto, p.nome_produto, p.qtd_produto, p.preco_produto,f.nome_fornecedor FROM produto p INNER JOIN  fornecedor f on p.id_fornecedor = f.id_fornecedor";
+        $sql = "SELECT p.id_produto, p.nome_produto, p.img_produto, p.qtd_produto, p.preco_produto,f.nome_fornecedor FROM produto p INNER JOIN  fornecedor f on p.id_fornecedor = f.id_fornecedor";
         $result = $conn->query($sql);
 
 
@@ -84,7 +91,10 @@ if (!isset($_SESSION["logado"])) {
             <?php $nomep = $row["nome_produto"]; ?>
 
             <td> <?php echo $row["id_produto"]; ?> </td>
-            <td> <?php echo $row["nome_produto"]; ?> </td>
+            <td > <?php echo $row["nome_produto"]; ?> </td>
+
+            <td> <img src="uploads/<?php echo $row['img_produto']; ?>" alt=""   onError="this.onerror=null;this.src='uploads/no-image.jpg'"> </td>
+            
             <td> <?php echo $row["qtd_produto"]; ?> </td>
             <td> <?php echo $row["preco_produto"]; ?> </td>
             <td> <?php echo $row["nome_fornecedor"]; ?> </td>
